@@ -6,6 +6,7 @@
     text-decoration: none;
     outline: none;
     font-family: "Poppins", serif;
+    color: #111;
 }
 
 
@@ -79,6 +80,12 @@ form input {
     font-weight: 500;
 }
 
+.price {
+    font-weight: 600;
+    font-size: 15px;
+    font-style: italic;
+}
+
 .galleryContainer {
     display: flex;
     flex-wrap: wrap;
@@ -93,4 +100,9 @@ form input {
 img {
     border-radius: 5px;
     width: 300px;
+    transition: 0.4s all ease;
+}
+
+img:hover{
+    scale: 1.02;
 }
