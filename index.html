@@ -3,19 +3,54 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>ART GALLERY</title>
+    <link rel="stylesheet" href="css/container.css">
+    <link rel="stylesheet" href="css/responsive.css">
     <link rel="stylesheet" href="css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Alegreya:ital,wght@0,400..900;1,400..900&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Jersey+15&family=Pacifico&family=Parkinsans:wght@300..800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
 </head>
 <body>
 
 
-    <div class="container">
-        
-    </div>
+    <header>
+        <div class="container">
+            <div class="row">
+                <div class="logo"><h1>Art Gallery</h1></div>
+                <form>
+                    <input type="search" placeholder="Search" id="searchInp">
+                </form>
+                <nav class="nav-bar" id="navBarContainer">
+                    <a href="">Home</a>
+                    <a href="">Gallery</a>
+                    <a href="">Contact Us</a>
+                    <a href="">About</a>
+                </nav>
+                
+            </div>
+        </div>
+    </header>
+
+    <section class="banner">
+        <div class="container">
+            <div class="row">
+                <div class="mainContainer">
+                    <div class="sideBar" id="genreContainer">
+                    </div>
+                    <div class="galleryContainer" id="galleryContainer">
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
 
 
 
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.7.8/axios.min.js"></script>
     <script src="js/app.js"></script>
 </body>
 </html>
