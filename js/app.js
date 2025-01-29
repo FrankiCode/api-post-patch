@@ -12,30 +12,26 @@ const showArtGallery = (arr) => {
   arr.forEach(({id, title, price, artist, genre, date, image_url}) => {
     galleryContainer.innerHTML += `
       <div class="galleryBox">
-          <img src="${image_url}" alt="${title}">         
-            <a href=""><h4>${artist}</h4>
-            <p>${title}</p>
+            <a href="./paintingDetail.html?painting=${id}"><img src="${image_url}" alt="${title}"></a>        
+            <a href="./paintingDetail.html?painting=${id}"><h4>${artist}</h4></a>
+            <p>"${title}"</p>
             <p>${genre}</p>
             <p>${date}</p>
-            <p>${price}</p>
+            <p class="price">${price}</p>
       </div>
      
     `
   });
 };
 
-categoryIndex = 0;
+
 const showGenre = (arr) => {
   genreContainer.innerHTML = "";
   arr.forEach((genre, i) => {
     genreContainer.innerHTML += `
-    <p onclick="setCategory(${i})">${genre}</p>`
+    <p>${genre}</p>`
   });
 };
-
-
-
-
 
 
 // ----------------------------FOREACH ARRAY-------------------------
@@ -48,33 +44,12 @@ searchInp.addEventListener("input", (e) => {
     if (res.status === 200 && res.statusText === "OK") {
       const filteredData = res.data.filter((artGallery) => 
         artGallery.title.toLowerCase().includes(e.target.value.toLowerCase()) 
-      || artGallery.artist.toLowerCase().includes(e.target.value.toLowerCase()) || artGallery.genre.toLowerCase().includes(e.target.value.toLowerCase())
+      || artGallery.artist.toLowerCase().includes(e.target.value.toLowerCase()) || artGallery.genre.toLowerCase().includes(e.target.value.toLowerCase()) || artGallery.price.toLowerCase().includes(e.target.value.toLowerCase())
     )
       showArtGallery(filteredData)
     }
   });
-
-
-
-
-
-
-  // const searchValue = toLowerCase().e.target.value.toLowerCase();
-  // getGalleryPainting(e.target.value)
-  // const filterPicture = artGallery.filter(({title, artist, genre}) => title.toLowerCase().includes(getGalleryPainting(e.target.value)))
-  // console.log(filterPicture);
-  
-  // showArtGallery(filterPicture);
-  // getGalleryPainting()
 });
-
-// const setCategory = (id) = {
-//   categoryIndex = id
-//   const filterProduct = genre.filter((pic) = {
-
-//   });
-// }
-
 // ---------------------------- SEARCH -------------------------
 
 
