@@ -12,7 +12,7 @@ axios.get(endpoint + "artGallery/" + paintingId).then((res) => {
                 <div class="buyDetail">
                     <p>${res.data.artist}</p>
                     <p>${res.data.title}</p>
-                    <h3>${res.data.price}<span>Free shipping</span></h3>
+                    <h3>€${res.data.price}<span>Free shipping</span></h3>
                     <a href="" class="buyNow">Buy now</a>
                     <a href="" class="addToCart">Add to cart</a>
                 </div>
