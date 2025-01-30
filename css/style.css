@@ -1,3 +1,9 @@
+:root {
+    --buttonColor: #FFFAEC;
+    --buttonColorDark: #111;
+    --greenColor: #578E7E;
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -27,22 +33,61 @@ header {
 .logo h1 {
     font-weight: 500;
     font-style: italic;
+    color: var(--greenColor);
+    font-size: 32px;
+    font-family: "Pacifico", serif;
 }
 
-nav {
+.logo h1 span {
+    font-size: 25px;
+    font-family: "Playwrite IN", serif;
+    color: var(--buttonColorDark);
+}
+
+
+.nav-bar {
     display: flex;
     gap: 20px;
 }
 
-form input {
+.nav-bar a {
+    font-size: 16px;
+    padding: 3px 9px;
+    transition: 0.4s all ease;
+}
+
+.nav-bar a:hover {
+    background-color: var(--greenColor);
+    color: var(--buttonColor);
+    border-radius: 5px;
+
+}
+
+.search-bar input {
     padding: 5px 10px;
     width: 250px;
     border-radius: 5px;
     border: none;
-    border: 1px solid #ccc;
+    border: 1px solid var(--greenColor);
+    color: var(--greenColor);
 }
 
+
+.search-bar input:focus {
+    border: 1px solid var(--buttonColorDark);
+}
+
+.search-bar input:focus::placeholder{
+    color: var(--greenColor);
+}
+
+
 /* -----------------------------BANNER */
+
+.banner{
+    display: flex;
+    flex-direction: column;
+}
 
 .banner .row {
     max-width: 1320px;
@@ -53,6 +98,25 @@ form input {
     align-items: center;
 }
 
+.addNewProduct {
+    display: flex;
+    justify-content: end;
+    margin: 20px 100px 0 0;
+    align-items: center;
+}
+
+.addNewProduct a{
+    background-color: var(--greenColor);
+    color: var(--buttonColor);
+    padding: 7px 12px;
+    border-radius: 5px;
+    transition: 0.4s all ease;
+    font-size: 14px;
+}
+
+.addNewProduct a:hover {
+    scale: 1.02;
+}
 
 
 .mainContainer {
@@ -73,6 +137,17 @@ form input {
 
 .sideBar p {
     cursor: pointer;
+    font-size: 14px;
+    transition: 0.4s all ease;
+}
+
+.sideBar p:hover {
+    background-color: var(--greenColor);
+    color: var(--buttonColor);
+    padding: 7px 0 7px 12px;
+    scale: 1.02;
+    border-radius: 5px;
+    font-size: 14px;
 }
 
 .galleryContainer h4 {
@@ -106,3 +181,4 @@ img {
 img:hover{
     scale: 1.02;
 }
+
