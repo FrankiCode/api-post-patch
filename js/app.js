@@ -5,6 +5,15 @@ const genreContainer = document.querySelector("#genreContainer");
 const galleryContainer = document.querySelector("#galleryContainer");
 
 
+const form = document.querySelector("#form");
+const nameInp = document.querySelector("#nameInp");
+const yearInp = document.querySelector("#yearInp");
+const priceInp = document.querySelector("#priceInp");
+const titleInp = document.querySelector("#titleInp");
+const imageInp = document.querySelector("#imageInp");
+const catSelect = document.querySelector("#catSelect");
+
+
 // ----------------------------FOREACH ARRAY-------------------------
 
 const showArtGallery = (arr) => {
@@ -17,7 +26,7 @@ const showArtGallery = (arr) => {
             <p>"${title}"</p>
             <p>${genre}</p>
             <p>${date}</p>
-            <p class="price">${price}</p>
+            <p class="price">€${price}</p>
       </div>
      
     `
@@ -69,10 +78,37 @@ getGalleryPainting()
 axios.get(endpoint + 'genre').then((res) => {
   if (res.status === 200 && res.statusText === "OK") {
     showGenre(res.data);
+    res.data.slice(1).forEach((genre) => {
+      catSelect.innerHTML += `<option value="${genre}">${genre}</option>`
+    })
   };
 });
 
 // ----------------------------AXIOS.GET-------------------------
+
+
+// ----------------------------AXIOS.ADD NEW PRODUCT-------------------------
+
+form.addEventListener("submit", (e) => {
+  e.preventDefault();
+  const obj = {
+    title: titleInp.value,   
+    price: priceInp.value,
+    artist: nameInp.value,
+    genre: catSelect.value,
+    date: yearInp.value,
+    image_url: imageInp.value,
+  };
+  axios.post(endpoint + 'artGallery', obj).then((res) => {
+    if (res.status === 201 && res.statusText === "Created") {
+      getGalleryPainting();
+    };
+  });
+});
+
+
+
+// ----------------------------AXIOS.ADD NEW PRODUCT-------------------------
 
 
 // const artGAllery = [
