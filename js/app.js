@@ -4,6 +4,12 @@ const searchInp = document.querySelector("#searchInp");
 const genreContainer = document.querySelector("#genreContainer");
 const galleryContainer = document.querySelector("#galleryContainer");
 
+const productModal = document.querySelector("#productModal");
+const addNewProduct = document.querySelector("#addNewProduct");
+const modalCloseBtn = document.querySelector("#modalCloseBtn");
+
+
+// ----------------------------HOlD ADD INPUT-------------------------
 
 const form = document.querySelector("#form");
 const nameInp = document.querySelector("#nameInp");
@@ -14,6 +20,8 @@ const imageInp = document.querySelector("#imageInp");
 const catSelect = document.querySelector("#catSelect");
 
 
+// ----------------------------HOlD ADD INPUT-------------------------
+
 // ----------------------------FOREACH ARRAY-------------------------
 
 const showArtGallery = (arr) => {
@@ -21,12 +29,19 @@ const showArtGallery = (arr) => {
   arr.forEach(({id, title, price, artist, genre, date, image_url}) => {
     galleryContainer.innerHTML += `
       <div class="galleryBox">
-            <a href="./paintingDetail.html?painting=${id}"><img src="${image_url}" alt="${title}"></a>        
-            <a href="./paintingDetail.html?painting=${id}"><h4>${artist}</h4></a>
-            <p>"${title}"</p>
-            <p>${genre}</p>
-            <p>${date}</p>
-            <p class="price">€${price}</p>
+          <a href="./paintingDetail.html?painting=${id}"><img src="${image_url}" alt="${title}"></a>        
+            <div class="description-Container">  
+              <div>
+                <a href="./paintingDetail.html?painting=${id}"><h4>${artist}</h4></a>
+                <p class="productTitle">"${title}"</p>
+                <p>${genre}</p>
+                <p>${date}</p>
+                <p class="price">€${price}</p>
+              </div>  
+              <div class="edit-delete-Btn">
+                <i class="fa-regular fa-pen-to-square" onclick="editProduct(${id})"></i> <i class="fa-regular fa-square-minus" onclick="deleteProduct(${id})"></i>
+              </div>
+            </div>  
       </div>
      
     `
@@ -38,14 +53,14 @@ const showGenre = (arr) => {
   genreContainer.innerHTML = "";
   arr.forEach((genre, i) => {
     genreContainer.innerHTML += `
-    <p>${genre}</p>`
+    <p>${genre.name}</p>`
   });
 };
 
 
 // ----------------------------FOREACH ARRAY-------------------------
 
-// ---------------------------- SEARCH -------------------------
+// ---------------------------- SEARCH --->> FILTER -------------------------
 
 
 searchInp.addEventListener("input", (e) => {
@@ -79,7 +94,7 @@ axios.get(endpoint + 'genre').then((res) => {
   if (res.status === 200 && res.statusText === "OK") {
     showGenre(res.data);
     res.data.slice(1).forEach((genre) => {
-      catSelect.innerHTML += `<option value="${genre}">${genre}</option>`
+      catSelect.innerHTML += `<option value="${genre.name}" class="addOptionCategory">${genre.name}</option>`
     })
   };
 });
@@ -87,7 +102,7 @@ axios.get(endpoint + 'genre').then((res) => {
 // ----------------------------AXIOS.GET-------------------------
 
 
-// ----------------------------AXIOS.ADD NEW PRODUCT-------------------------
+// ----------------------------AXIOS.POST --->> ADD NEW PRODUCT -------------------------
 
 form.addEventListener("submit", (e) => {
   e.preventDefault();
@@ -97,44 +112,81 @@ form.addEventListener("submit", (e) => {
     artist: nameInp.value,
     genre: catSelect.value,
     date: yearInp.value,
-    image_url: imageInp.value,
+    // image_url: imageInp.value,
   };
   axios.post(endpoint + 'artGallery', obj).then((res) => {
     if (res.status === 201 && res.statusText === "Created") {
       getGalleryPainting();
     };
   });
+  productModal.classList.add("hidden");
 });
 
 
 
-// ----------------------------AXIOS.ADD NEW PRODUCT-------------------------
+// ----------------------------AXIOS.POST ADD NEW PRODUCT-------------------------
 
 
-// const artGAllery = [
+// ---------------------------- DELEET PRODUCT -------------------------
+const deleteProduct = (id) => {
+  axios.delete(endpoint + 'artGallery/' + id).then((res) => {
+    if (res.status === 200 && res.statusText === "OK") {
+      getGalleryPainting();
+    }
+  });
+}
 
-//         {
-//           "title": "Impression, Sunrise",
-//           "price": "5000 USD",
-//           "artist": "Claude Monet",
-//           "genre": "landscape",
-//           "date": "1872",
-//           "image_url": "https://commons.wikimedia.org/wiki/File:Claude_Monet,_Impression,_soleil_levant.jpg"
-//         },
-//         {
-//           "title": "Mona Lisa",
-//           "price": "850000000 USD",
-//           "artist": "Leonardo da Vinci",
-//           "genre": "portrait",
-//           "date": "1503",
-//           "image_url": "https://commons.wikimedia.org/wiki/File:Mona_Lisa,_by_Leonardo_da_Vinci,_from_C2RMF_retouched.jpg"
-//         },
-//         {
-//           "title": "Starry Night",
-//           "price": "100000000 USD",
-//           "artist": "Vincent van Gogh",
-//           "genre": "post-impressionism",
-//           "date": "1889",
-//           "image_url": "https://commons.wikimedia.org/wiki/File:Van_Gogh_-_Starry_Night_-_Google_Art_Project.jpg"
-//         },
-// ]
+// ---------------------------- DELETE PRODUCT -------------------------
+
+// ---------------------------- EDIT PRODUCT -------------------------
+const editProduct = (id) => {
+  axios.get(endpoint + 'artGallery/' + id).then((res) => {
+    if (res.status === 200 && res.statusText === "OK") {
+      const newTitle = prompt("Edit new title", res.data.title);
+      const newPrice = prompt("Edit new price", res.data.price);
+
+
+      const obj = {
+        title: newTitle,
+        price: newPrice,
+      };
+      axios.patch(endpoint + 'artGallery/' + id, obj).then((res) => {
+        if (res.status === 200) {
+          getGalleryPainting();
+        };
+      });
+    };
+  });
+};
+
+// ---------------------------- EDIT PRODUCT -------------------------
+
+
+
+
+
+
+// ----------------------------ADD MODAL-------------------------
+
+let isModal = true;
+
+addNewProduct.addEventListener("click" , () => {
+  if (isModal) {
+    productModal.classList.add("activeModal");
+    productModal.classList.remove("hidden")
+  };
+});
+
+const setModalClose = () => {
+  modalCloseBtn.addEventListener("click", () => {
+    productModal.classList.add("hidden");
+  });
+}
+setModalClose()
+
+// ----------------------------ADD MODAL-------------------------
+
+
+
+
+
