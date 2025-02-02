@@ -13,12 +13,18 @@
     outline: none;
     font-family: "Poppins", serif;
     color: #111;
+    
 }
 
-
 header {
+    top: 0;
     width: 100%;
-    box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
+    z-index: 999;
+    position: sticky;
+    background-color: #fff;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    /* box-shadow: #32325d40 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px; */
+    /* border-bottom: 1px solid var(--greenColor); */
 }
 
 .row {
@@ -47,8 +53,23 @@ header {
 
 .nav-bar {
     display: flex;
+    align-items: center;
     gap: 20px;
 }
+
+.nav-icons i {
+    transition: 0.4s all;
+    margin-left: 5px;
+}
+
+.nav-icons i:hover {
+    color: var(--greenColor);
+    scale: 1.2;
+    cursor: pointer;
+}
+
+
+
 
 .nav-bar a {
     font-size: 16px;
@@ -60,7 +81,6 @@ header {
     background-color: var(--greenColor);
     color: var(--buttonColor);
     border-radius: 5px;
-
 }
 
 .search-bar input {
@@ -101,21 +121,23 @@ header {
 .addNewProduct {
     display: flex;
     justify-content: end;
-    margin: 20px 100px 0 0;
     align-items: center;
+    margin: 20px 100px 0 0;
 }
 
-.addNewProduct a{
-    background-color: var(--greenColor);
-    color: var(--buttonColor);
-    padding: 7px 12px;
-    border-radius: 5px;
-    transition: 0.4s all ease;
+.addNewProduct button{
+    border: none;
     font-size: 14px;
+    cursor: pointer;
+    border-radius: 5px;
+    padding: 7px 12px;
+    color: var(--buttonColor);
+    transition: 0.4s all ease;
+    background-color: var(--greenColor);
 }
 
-.addNewProduct a:hover {
-    scale: 1.02;
+.addNewProduct button:hover {
+    scale: 1.05;
 }
 
 
@@ -145,9 +167,9 @@ header {
     background-color: var(--greenColor);
     color: var(--buttonColor);
     padding: 7px 0 7px 12px;
-    scale: 1.02;
     border-radius: 5px;
     font-size: 14px;
+    scale: 1.02;
 }
 
 .galleryContainer h4 {
@@ -162,19 +184,49 @@ header {
 }
 
 .galleryContainer {
-    display: flex;
-    flex-wrap: wrap;
-    flex: 0 0 auto;
-    justify-content: center;
     gap: 10px;
-    border-radius: 5px;
+    display: flex;
     padding: 10px;
+    flex: 0 0 auto;
+    flex-wrap: wrap;
+    border-radius: 5px;
+    position: relative;
+    justify-content: center;
+}
+
+/* ------------------------ PRODUCT DESCRIPTION CONTAINER */
+
+.description-Container {
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+}
+
+.edit-delete-Btn {
+    position: absolute;
+    bottom: 0;
+    right: 5px;
+}
+
+.edit-delete-Btn i {
+    font-size: 16px;
+    margin-left: 5px;
+    cursor: pointer;
+    transition: 0.4s all ease;
+}
+
+.edit-delete-Btn i:hover {
+    scale: 1.2;
+    color: var(--greenColor);
 }
 
 
+/* ---------------------------- PRODUCT DESCRIPTION CONTAINER */
+
+
 img {
-    border-radius: 5px;
     width: 300px;
+    border-radius: 5px;
     transition: 0.4s all ease;
 }
 
@@ -182,3 +234,87 @@ img:hover{
     scale: 1.02;
 }
 
+/* ----------------------------ADD PRODUCT MODAL */
+
+.activeModal {
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: block;
+    position: relative;
+    z-index: 1;
+    /* display: flex; */
+    position: fixed;
+    /* align-items: center; */
+    /* justify-content: end; */
+    /* background-color: #11111137; */
+}
+
+
+
+.add-productModal {
+    width: 40%;
+    top: 120px;
+    right: 255px;
+    padding: 10px;
+    max-width: 1200px;
+    position: relative;
+    position: absolute;
+    border-radius: 5px;
+    border: 1px solid var(--greenColor);
+    background-color: #578e7e89;
+}
+.add-productModal span {
+    color: var(--buttonColorDark);
+    transition: 0.4s all ease;
+    position: absolute;
+    font-size: 20px;
+    cursor: pointer;
+    right: 12px;
+    top: 8px;
+}
+
+.add-productModal span:hover {
+    scale: 1.5;
+}
+
+.add-productModal h2 {
+    color: var(--buttonColor);
+    font-weight: 500;
+    margin-bottom: 10px;
+}
+
+.modal-form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.modal-form input  {
+    padding: 5px 10px;
+    border-radius: 5px;
+    border: none;
+    font-size: 14px;
+}
+
+.modal-form input:focus {
+    color: var(--greenColor);
+    font-size: 14px;
+}
+
+.modal-form input:focus::placeholder{
+    color: var(--greenColor);
+}
+
+
+.addOptionCategory {
+    padding: 10px;
+}
+
+.hidden {
+    display: none;
+}
+
+
+/* ----------------------------ADD PRODUCT MODAL */
