@@ -3,68 +3,65 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ART GALLERY</title>
-    <link rel="stylesheet" href="css/container.css">
+    <title>Art Gallery</title>
+    <link rel="stylesheet" href="css/homePage/homePStyle.css">
     <link rel="stylesheet" href="css/responsive.css">
+    <link rel="stylesheet" href="css/container.css">
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/commonStyle/commonStyle.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Alegreya:ital,wght@0,400..900;1,400..900&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Jersey+15&family=Pacifico&family=Parkinsans:wght@300..800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
+/>
 </head>
 <body>
-
 
     <header>
         <div class="container">
             <div class="row">
-                <div class="logo"><a href=""><h1>Art<span>Gallery</span></h1></a></div>
+                <div class="logo"><a href="index.html"><h1>Art<span>Gallery</span></h1></a></div>
                 <form class="search-bar">
                     <input type="search" placeholder="Search" id="searchInp">
                 </form>
                 <nav class="nav-bar" id="navBarContainer">
-                    <a href="">Home</a>
-                    <a href="">Gallery</a>
+                    <a href="index.html">Home</a>
+                    <a href="galleryPage.html">Gallery</a>
                     <a href="">Contact Us</a>
                     <a href="">About</a>
+                    <div class="nav-icons">
+                        <i class="fa-regular fa-user"></i>
+                        <i class="fa-regular fa-image"></i>
+                    </div>
                 </nav>
-                
             </div>
         </div>
     </header>
-
-    <section class="banner">
-        <div class="addNewProduct">
-            <form id="form">
-                <input type="text" placeholder="name" id="nameInp">
-                <input type="text" placeholder="title" id="titleInp">
-                <input type="text" placeholder="year" id="yearInp">
-                <input type="text" placeholder="price" id="priceInp">
-                <!-- <input type="file" placeholder="image" id="imageInp"> -->
-                <select id="catSelect">
-                    
-                </select>
-                <input type="submit" value="add new product" id="submitInp">
-            </form>
-            <a href="">Add New Product <i class="fa-solid fa-plus"></i></a></div>
-        <div class="container">
-            <div class="row">
-                <div class="mainContainer">
-                    <div class="sideBar" id="genreContainer">
-                    </div>
-                    <div class="galleryContainer" id="galleryContainer">
-                        
-                    </div>
+        <!----------------------- SLIDER  -->
+        
+    <section class="homePage-container">
+        <div class="imageSlider-container" id="sliderHomePage">
+            <div class="swiper">
+                <div class="swiper-wrapper" id="swiperWrapper">
                 </div>
             </div>
         </div>
     </section>
+        <!----------------------- SLIDER  -->
+
+        
+    
 
 
 
 
 
+      
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.7.8/axios.min.js"></script>
-    <script src="js/app.js"></script>
+    <script src="js/homePage/homaPage.js"></script>
 </body>
 </html>
