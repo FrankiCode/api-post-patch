@@ -28,7 +28,10 @@
     align-items: center;
 }
 
-.detailContainer-box a:hover {
+.backToGallery a{
+    display: inline;
+}
+.backToGallery:hover {
     color: var(--greenColor);
 }
 
